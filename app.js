@@ -14,6 +14,7 @@ var produitAdminRouter = require('./routes/produitAdminRouter');
 var blogsRouter = require('./routes/blogsRouter');
 var categorieFormationRouter = require('./routes/categorieFormationRouter');
 var formationsRouter = require('./routes/formationsRouter');
+var fournisseursRouter = require('./routes/fournisseursRouter');
 
 const cors = require('cors');
 
@@ -40,6 +41,7 @@ app.use('/produitsAdmin', produitAdminRouter);
 app.use('/blogs', blogsRouter);
 app.use('/categoriesFormation', categorieFormationRouter);
 app.use('/formations', formationsRouter);
+app.use('/fournisseurs', fournisseursRouter);
 
 
 // catch 404 and forward to error handler
