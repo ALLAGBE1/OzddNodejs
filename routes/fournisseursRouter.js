@@ -44,6 +44,7 @@ const storage = multer.diskStorage({
 fournisseur.route('/')
     .get((req, res, next) => {
         Fournisseurs.find(req.query)
+        .populate('userId')
         .then((produits) => {
             const transformedProducts = produits.map(produit => {
                 produit = produit.toObject();
@@ -126,6 +127,17 @@ fournisseur.route('/').post(upload.fields([
     }
 });
 
+fournisseur.route('/valides').get((req, res, next) => {
+    Fournisseurs.find({ fournisseur: true })
+    .populate('userId')
+    .then((produits) => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(produits);
+    })
+    .catch((err) => next(err));
+});
+
 
 fournisseur.put('/update/:updateId', (req, res, next) => {
   Fournisseurs.findByIdAndUpdate(req.params.updateId, {
@@ -138,6 +150,7 @@ fournisseur.put('/update/:updateId', (req, res, next) => {
   }, (err) => next(err))
   .catch((err) => next(err));
 });
+
 
 
 fournisseur.route('/')

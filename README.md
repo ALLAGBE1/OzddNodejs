@@ -51,3 +51,5 @@ L'API pour récupérer tous les fournisseurs, enregistrer un fournisseur et supr
 
 
 L'API pour modifier un fournisseur ou son état fournisseur : http://10.50.12.85:3000/fournisseurs/update/${updateId}
+
+L'API pour récupérer les fournisseurs validés : http://10.50.12.85:3000/fournisseurs/valides
