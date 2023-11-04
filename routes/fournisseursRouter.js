@@ -42,31 +42,17 @@ const storage = multer.diskStorage({
 
 
 fournisseur.route('/')
-    .get((req, res, next) => {
-        Fournisseurs.find(req.query)
-        .populate('userId')
-        .then((produits) => {
-            const transformedProducts = produits.map(produit => {
-                produit = produit.toObject();
-
-                let imageName = produit.image;
-                produit.afficheUrl = `${imageName}`;
-
-                // Récupérez uniquement le nom du fichier à partir de documentfournirId
-                let fileName = path.basename(produit.pieceIdentite);
-                
-                // Utilisez ce nom de fichier pour créer l'URL de téléchargement
-                produit.downloadUrl = `/download/${fileName}`;
-
-                return produit;
-            })
-
-            res.statusCode = 200;
-            res.setHeader('Content-Type', 'application/json');
-            res.json(transformedProducts); // Utilisez les données transformées
-        })
-        .catch((err) => next(err));
-    });
+  .get((req, res, next) => {
+    Fournisseurs.find(req.query)
+    .populate('userId')
+    .then((fournisseurs) => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(fournisseurs); // Utilisez les données transformées
+    })
+    .catch((err) => next(err));
+  });
+    
 
 fournisseur.get('/images/:imageName', (req, res, next) => {
     const imageName = req.params.imageName;
@@ -102,9 +88,9 @@ fournisseur.route('/').post(upload.fields([
         const { numeroTel, nomEntreprise, pays  } = req.body;
     
         const imagePath = `${req.protocol}://${req.get('host')}/fournisseurs/${req.files['logoEntreprise'][0].filename}`;
-        console.log("aaaaaaaaaaaa", imagePath)
-        const documentPath = req.files['pieceIdentite'][0].path;
-        console.log("bbbbbbbbbbbb", documentPath)
+        console.log("aaaaaaaaaaaa", imagePath);
+        const documentPath = `${req.protocol}://${req.get('host')}/fournisseurs/download/${req.files['pieceIdentite'][0].filename}`;
+        console.log("bbbbbbbbbbbb", documentPath);
 
     
         const nouvelleFournisseur = await Fournisseurs.create({

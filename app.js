@@ -15,6 +15,7 @@ var blogsRouter = require('./routes/blogsRouter');
 var categorieFormationRouter = require('./routes/categorieFormationRouter');
 var formationsRouter = require('./routes/formationsRouter');
 var fournisseursRouter = require('./routes/fournisseursRouter');
+var produitFournisseurRouter = require('./routes/produitsFournisseursRouter');
 
 const cors = require('cors');
 
@@ -42,6 +43,8 @@ app.use('/blogs', blogsRouter);
 app.use('/categoriesFormation', categorieFormationRouter);
 app.use('/formations', formationsRouter);
 app.use('/fournisseurs', fournisseursRouter);
+app.use('/produitsFournisseurs', produitFournisseurRouter);
+
 
 
 // catch 404 and forward to error handler

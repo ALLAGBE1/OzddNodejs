@@ -36,20 +36,23 @@ L'API pour récupérer, mettre à jour et supprimer une catégorie : http://192.
 
 
 L'API pour récupérer tous les formations, enregistrer une formation et suprimer tous les formation : http://192.168.0.17:3000/formations (GET, POST, DELETE)  
-"# ozddProjet" 
 
 
-# API pour la Fournisseur
-
-L'API pour récupérer tous les catégories des formations, enregistrer une catégorie et supprimer tous les catégories : http://192.168.31.206:3000/categoriesFormation (GET, POST, DELETE)
-
-L'API pour récupérer, mettre à jour et supprimer une catégorie : http://192.168.31.206:3000/categoriesFormation/${categorieId} (GET, PUT, DELETE)
-
+# API pour les Fournisseur
 
 L'API pour récupérer tous les fournisseurs, enregistrer un fournisseur et suprimer tous les fournisseurs : http://10.50.12.85:3000/fournisseurs (GET, POST, DELETE)  
-"# ozddProjet" 
 
 
 L'API pour modifier un fournisseur ou son état fournisseur : http://10.50.12.85:3000/fournisseurs/update/${updateId}
 
 L'API pour récupérer les fournisseurs validés : http://10.50.12.85:3000/fournisseurs/valides
+
+
+# API pour les produits des fournisseurs
+
+L'API pour récupérer tous les produits fournisseurs, enregistrer un produit fournisseur et suprimer tous les produits fornisseurs : http://192.168.0.61:3000/produitsFournisseurs (GET, POST, DELETE)
+
+L'API pour récupérer, mettre à jour et supprimer un produit fournisseur : http://192.168.0.61:3000/produitsFournisseurs/produit/${produitId} (GET, PUT, DELETE)
+
+L'API pour récupérer tous les produits par fournisseur : http://192.168.0.61:3000/produitsFournisseurs/fournisseurs/${fournisseurId} (GET)
+
