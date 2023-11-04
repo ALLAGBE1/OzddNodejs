@@ -139,11 +139,11 @@ fournisseur.put('/update/:updateId', (req, res, next) => {
 
 
 
-fournisseur.route('/')
-    .put((req, res, next) => {
-        res.statusCode = 403;
-        res.end('Opération PUT non prise en charge sur /Produits/');
-    })
+// fournisseur.route('/')
+//     .put((req, res, next) => {
+//         res.statusCode = 403;
+//         res.end('Opération PUT non prise en charge sur /Produits/');
+//     })
 
 fournisseur.route('/')
     .delete((req, res, next) => {
