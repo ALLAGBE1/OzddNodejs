@@ -66,7 +66,7 @@ produitFournisseurRouter.route('/')
     .post(upload.single('image'), async (req, res, next) => {
         try {
             console.log("zzzzzzzzzzzzzzzzzzzz");
-            const { titre, description, prix, apercu } = req.body;
+            const { titre, description, prix, apercu, nomEntreprise } = req.body;
             const imageUrl = `${req.protocol}://${req.get('host')}/produitsFournisseurs/${req.file.originalname}`;
             console.log("aaaaaaaaaaaaaaaa", imageUrl);
 
@@ -76,7 +76,9 @@ produitFournisseurRouter.route('/')
                 image: imageUrl,
                 prix: prix,
                 apercu: apercu,
+                nomEntreprise: nomEntreprise
                 // fournisseur: fournisseur
+                
             });
 
             console.log("Produit Créé :", produit);
