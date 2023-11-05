@@ -23,11 +23,15 @@ const produitsFournisseursSchema = new Schema({
         type: String,
         required: true
     },
-    fournisseur: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Fournisseur',
+    nomEntreprise: {
+        type: String,
         required: true
-    }
+    },
+    // fournisseur: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'Fournisseur',
+    //     required: true
+    // }
 }, {
     timestamps: true
 });
