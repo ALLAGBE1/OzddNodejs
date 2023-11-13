@@ -165,7 +165,7 @@ produitFournisseurRouter.route('/produit/:produitId')
 
 produitFournisseurRouter.route('/fournisseurs/:fournisseurId')
 .get((req, res, next) => {
-    ProduitsFournisseurs.find({ fournisseur: req.params.fournisseurId })
+    ProduitsFournisseurs.find({ nomEntreprise: req.params.fournisseurId })
     .then((produits) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
