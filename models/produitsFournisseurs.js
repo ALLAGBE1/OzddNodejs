@@ -15,7 +15,7 @@ const produitsFournisseursSchema = new Schema({
         default: ''
     },
     prix: {
-        type: Number,
+        type: String,
         required: true,
         min: 0
     },
@@ -26,7 +26,7 @@ const produitsFournisseursSchema = new Schema({
     nomEntreprise: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Fournisseur',
-        required: true
+        // required: true
     }
 }, {
     timestamps: true

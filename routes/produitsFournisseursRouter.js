@@ -32,7 +32,7 @@ const upload = multer({ storage: storage, fileFilter: imageFileFilter });
 produitFournisseurRouter.route('/')
     .get((req, res, next) => {
         ProduitsFournisseurs.find(req.query)
-        .populate('fournisseur')
+        // .populate('fournisseur')
         .then((produits) => {
             // const transformedProducts = produits.map(produit => {
             //     produit = produit.toObject();
@@ -76,8 +76,7 @@ produitFournisseurRouter.route('/')
                 image: imageUrl,
                 prix: prix,
                 apercu: apercu,
-                nomEntreprise: nomEntreprise
-                // fournisseur: fournisseur
+                nomEntreprise: nomEntreprise,
                 
             });
 
