@@ -52,7 +52,7 @@ L'API pour récupérer les fournisseurs validés : http://10.50.12.85:3000/fourn
 
 L'API pour récupérer tous les produits fournisseurs, enregistrer un produit fournisseur et suprimer tous les produits fornisseurs : http://192.168.43.69:3000/produitsFournisseurs (GET, POST, DELETE)
 
-<!-- L'API pour récupérer, mettre à jour et supprimer un produit fournisseur : http://192.168.0.61:3000/produitsFournisseurs/produit/${produitId} (GET, PUT, DELETE) -->
+L'API pour récupérer, mettre à jour et supprimer un produit par fournisseur : http://192.168.0.61:3000/produitsFournisseurs/produit/${produitId} (GET, PUT, DELETE)
 
 L'API pour récupérer tous les produits par fournisseur : http://192.168.0.61:3000/produitsFournisseurs/fournisseurs/${fournisseurId} (GET)
 
