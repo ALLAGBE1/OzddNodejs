@@ -42,12 +42,11 @@ L'API pour récupérer tous les formations, enregistrer une formation et suprime
 
 L'API pour récupérer tous les fournisseurs, enregistrer un fournisseur et suprimer tous les fournisseurs : http://10.50.12.85:3000/fournisseurs (GET, POST, DELETE)  
 
+L'API pour récupérer les détails du profile d'un fournisseurs : http://10.50.12.85:3000/fournisseurs/${fournisseurId} (GET)
 
 L'API pour modifier un fournisseur ou son état fournisseur : http://10.50.12.85:3000/fournisseurs/update/${updateId}
 
 L'API pour récupérer les fournisseurs validés : http://10.50.12.85:3000/fournisseurs/valides
-
-L'API pour récupérer les détails du profile d'un fournisseurs validés : http://10.50.12.85:3000/fournisseurs/valides/${fournisseurId} (GET)
 
 
 # API pour les produits des fournisseurs

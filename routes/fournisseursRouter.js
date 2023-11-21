@@ -124,7 +124,7 @@ fournisseur.route('/valides').get((req, res, next) => {
     .catch((err) => next(err));
 });
 
-fournisseur.route('/valides/:fournisseurId')
+fournisseur.route('/:fournisseurId')
 .get((req,res,next) => {
     Fournisseurs.findById(req.params.fournisseurId)
     .then((categorie) => {
