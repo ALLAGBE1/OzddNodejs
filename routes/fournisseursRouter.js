@@ -124,6 +124,16 @@ fournisseur.route('/valides').get((req, res, next) => {
     .catch((err) => next(err));
 });
 
+fournisseur.route('/valides/:fournisseurId')
+.get((req,res,next) => {
+    Fournisseurs.findById(req.params.fournisseurId)
+    .then((categorie) => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(categorie);
+    }, (err) => next(err))
+    .catch((err) => next(err));
+})
 
 fournisseur.put('/update/:updateId', (req, res, next) => {
   Fournisseurs.findByIdAndUpdate(req.params.updateId, {

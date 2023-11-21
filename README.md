@@ -47,6 +47,8 @@ L'API pour modifier un fournisseur ou son état fournisseur : http://10.50.12.85
 
 L'API pour récupérer les fournisseurs validés : http://10.50.12.85:3000/fournisseurs/valides
 
+L'API pour récupérer les détails du profile d'un fournisseurs validés : http://10.50.12.85:3000/fournisseurs/valides/${fournisseurId} (GET)
+
 
 # API pour les produits des fournisseurs
 
