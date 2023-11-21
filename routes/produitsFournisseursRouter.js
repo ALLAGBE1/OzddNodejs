@@ -112,6 +112,7 @@ produitFournisseurRouter.route('/')
 produitFournisseurRouter.route('/produit/:produitId')
 .get((req, res, next) => {
     ProduitsFournisseurs.findById(req.params.produitId)
+    .populate('nomEntreprise')
     .then((produit) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
