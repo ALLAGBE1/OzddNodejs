@@ -67,7 +67,8 @@ produitFournisseurRouter.route('/')
         try {
             console.log("zzzzzzzzzzzzzzzzzzzz");
             const { titre, description, prix, apercu, nomEntreprise } = req.body;
-            const imageUrl = `${req.protocol}://${req.get('host')}/produitsFournisseurs/${req.file.originalname}`;
+            // const imageUrl = `${req.protocol}://${req.get('host')}/produitsFournisseurs/${req.file.originalname}`;
+            const imageUrl = `https://ozdd.onrender.com/produitsFournisseurs/${req.file.originalname}`;
             console.log("aaaaaaaaaaaaaaaa", imageUrl);
 
             const produit = await ProduitsFournisseurs.create({

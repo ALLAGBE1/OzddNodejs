@@ -103,7 +103,8 @@ formation.route('/').post(upload.fields([
         // Récupérez les chemins d'accès aux fichiers téléchargés à partir de req.files
         // const imagePath = req.files['imagePath'][0].path;
         // const imagePath = `${req.protocol}://${req.get('host')}/formations/${req.files['imagePath'][0].path}`;
-        const imagePath = `${req.protocol}://${req.get('host')}/formations/${req.files['imagePath'][0].filename}`;
+        // const imagePath = `${req.protocol}://${req.get('host')}/formations/${req.files['imagePath'][0].filename}`;
+        const imagePath = `https://ozdd.onrender.com/formations/${req.files['imagePath'][0].filename}`;
         console.log("aaaaaaaaaaaa", imagePath)
         const documentPath = req.files['documentfournirId'][0].path;
         console.log("bbbbbbbbbbbb", documentPath)

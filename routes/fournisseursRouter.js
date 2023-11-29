@@ -87,9 +87,11 @@ fournisseur.route('/').post(upload.fields([
         // Récupérez les données du formulaire à partir de req.body
         const { numeroTel, nomEntreprise, pays  } = req.body;
     
-        const imagePath = `${req.protocol}://${req.get('host')}/fournisseurs/${req.files['logoEntreprise'][0].filename}`;
+        // const imagePath = `${req.protocol}://${req.get('host')}/fournisseurs/${req.files['logoEntreprise'][0].filename}`;
+        const imagePath = `https://ozdd.onrender.com/fournisseurs/${req.files['logoEntreprise'][0].filename}`;
         console.log("aaaaaaaaaaaa", imagePath);
-        const documentPath = `${req.protocol}://${req.get('host')}/fournisseurs/download/${req.files['pieceIdentite'][0].filename}`;
+        // const documentPath = `${req.protocol}://${req.get('host')}/fournisseurs/download/${req.files['pieceIdentite'][0].filename}`;
+        const documentPath = `https://ozdd.onrender.com/fournisseurs/download/${req.files['pieceIdentite'][0].filename}`;
         console.log("bbbbbbbbbbbb", documentPath);
 
     

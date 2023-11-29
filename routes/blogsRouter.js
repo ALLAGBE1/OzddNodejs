@@ -67,7 +67,8 @@ blogsRouter.route('/')
         try {
             console.log("zzzzzzzzzzzzzzzzzzzz");
             const { titre, description, apercu  } = req.body;
-            const imageUrl = `${req.protocol}://${req.get('host')}/blogs/${req.file.originalname}`;
+            // const imageUrl = `${req.protocol}://${req.get('host')}/blogs/${req.file.originalname}`;
+            const imageUrl = `https://ozdd.onrender.com/blogs/${req.file.originalname}`;
             console.log("aaaaaaaaaaaaaaaa", imageUrl);
             // const imageUrl = `${req.protocol}://${req.get('host')}/blogs/${req.file.originalname}`;
             // console.log("aaaaaaaaaaaaaaaa", imageUrl);
