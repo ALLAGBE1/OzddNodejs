@@ -69,7 +69,8 @@ produitAdminRouter.route('/')
             const { titre, description, prix, apercu, categorie } = req.body;
             // const imageUrl = `${req.protocol}://${req.get('host')}/produitsAdmin/${req.file.originalname}`;
             const imageUrl = `https://ozdd.onrender.com/produitsAdmin/${req.file.originalname}`;
-            console.log("aaaaaaaaaaaaaaaa", imageUrl);
+            console.log("bbbbbbbbbbbbbbbbbbbbb");
+            // console.log("aaaaaaaaaaaaaaaa", imageUrl);
 
             const produit = await ProduitsAdmin.create({
                 titre: titre,
