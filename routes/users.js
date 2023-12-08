@@ -34,11 +34,6 @@ router.post('/sinscrire', async (req, res, next) => {
       req.body.password
     );
 
-    // console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-    // if (req.body.lastName) user.lastName = req.body.lastName;
-    // if (req.body.firstName) user.firstName = req.body.firstName;
-    
-
     // await user.save();
 
     passport.authenticate('local')(req, res, () => {
