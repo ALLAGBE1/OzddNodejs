@@ -175,6 +175,7 @@ produitAdminRouter.route('/categories/:categorieId')
     .catch((err) => next(err));
 });
 
+
 produitAdminRouter.use(express.static('public/imagesProduits'));
 
 module.exports = produitAdminRouter;
