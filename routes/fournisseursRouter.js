@@ -20,8 +20,14 @@ const storage = multer.diskStorage({
       }
     },
     filename: (req, file, cb) => {
-      cb(null, Date.now() + '-' + file.originalname); // Définir le nom du fichier téléchargé
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    //   cb(null, file.originalname + '-' + uniqueSuffix); // Ajoute un timestamp au nom du fichier
+        cb(null, uniqueSuffix + '-' +  file.originalname); // Ajoute un timestamp au nom du fichier
+
     }
+    // filename: (req, file, cb) => {
+    //   cb(null, Date.now() + '-' + file.originalname); // Définir le nom du fichier téléchargé
+    // }
   });
   
   

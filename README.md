@@ -57,4 +57,13 @@ L'API pour récupérer, mettre à jour et supprimer un produit par fournisseur :
 
 L'API pour récupérer tous les produits par fournisseur : http://192.168.0.61:3000/produitsFournisseurs/fournisseurs/${fournisseurId} (GET)
 
+
+# API pour le panier
+
+L'API pour récupérer tous les produits du panier, ajouter un produit au panier : http://192.168.43.69:3000/panier (GET, POST)
+
+L'API pour retirer chaque produit du panier : http://192.168.43.69:3000/panier (DELETE)
+
+
+
 "# OzddNodejs" 

@@ -16,6 +16,7 @@ var categorieFormationRouter = require('./routes/categorieFormationRouter');
 var formationsRouter = require('./routes/formationsRouter');
 var fournisseursRouter = require('./routes/fournisseursRouter');
 var produitFournisseurRouter = require('./routes/produitsFournisseursRouter');
+var panierRouter = require('./routes/panierRouter');
 
 const cors = require('cors');
 
@@ -44,6 +45,7 @@ app.use('/categoriesFormation', categorieFormationRouter);
 app.use('/formations', formationsRouter);
 app.use('/fournisseurs', fournisseursRouter);
 app.use('/produitsFournisseurs', produitFournisseurRouter);
+app.use('/paniers', panierRouter);
 
 
 

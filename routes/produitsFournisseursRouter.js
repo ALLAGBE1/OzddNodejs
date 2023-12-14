@@ -15,8 +15,14 @@ const storage = multer.diskStorage({
       cb(null, 'public/imagesProduitsFournisseurs'); // Définit le répertoire de stockage
     },
     filename: (req, file, cb) => {
-      cb(null, file.originalname); // Définit le nom du fichier
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+      //   cb(null, file.originalname + '-' + uniqueSuffix); // Ajoute un timestamp au nom du fichier
+        cb(null, uniqueSuffix + '-' +  file.originalname); // Ajoute un timestamp au nom du fichier
+
     }
+    // filename: (req, file, cb) => {
+    //   cb(null, file.originalname); // Définit le nom du fichier
+    // }
   });
   
   const imageFileFilter = (req, file, cb) => {

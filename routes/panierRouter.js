@@ -1,42 +1,59 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const Blogs = require('../models/blog');
+const Paniers = require('../models/panier');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-const blogsRouter = express.Router();
-blogsRouter.use(bodyParser.json());
+const panierRouter = express.Router();
+panierRouter.use(bodyParser.json());
 
 // :::::::::::::::::::::::
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, 'public/imagesProduits'); // Définit le répertoire de stockage
+      cb(null, 'public/imagesPaniers'); // Définit le répertoire de stockage
     },
     filename: (req, file, cb) => {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-      //   cb(null, file.originalname + '-' + uniqueSuffix); // Ajoute un timestamp au nom du fichier
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    //   cb(null, file.originalname + '-' + uniqueSuffix); // Ajoute un timestamp au nom du fichier
         cb(null, uniqueSuffix + '-' +  file.originalname); // Ajoute un timestamp au nom du fichier
+
     }
-    // filename: (req, file, cb) => {
-    //   cb(null, file.originalname); // Définit le nom du fichier
-    // }
   });
   
   const imageFileFilter = (req, file, cb) => {
-    if(!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
-        return cb(new Error('Vous ne pouvez télécharger que des fichiers pdf !'), false);
+    if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
+      return cb(new Error('Vous ne pouvez télécharger que des fichiers images !'), false);
     }
     cb(null, true);
   };
   
-const upload = multer({ storage: storage, fileFilter: imageFileFilter });
+  const upload = multer({ storage: storage, fileFilter: imageFileFilter });
+
+  
+// const storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//       cb(null, 'public/imagesPaniers'); // Définit le répertoire de stockage
+//     },
+//     filename: (req, file, cb) => {
+//       cb(null, file.originalname); // Définit le nom du fichier
+//     }
+//   });
+  
+//   const imageFileFilter = (req, file, cb) => {
+//     if(!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
+//         return cb(new Error('Vous ne pouvez télécharger que des fichiers images !'), false);
+//     }
+//     cb(null, true);
+//   };
+  
+// const upload = multer({ storage: storage, fileFilter: imageFileFilter });
 // ::::::::::::::::::::::
 
-blogsRouter.route('/')
+panierRouter.route('/')
     .get((req, res, next) => {
-        Blogs.find(req.query)
+        Paniers.find(req.query)
         // .populate('categorieBlog')
         .then((blogs) => {
             const transformedBlogs = blogs.map(blog => {
@@ -54,7 +71,7 @@ blogsRouter.route('/')
         .catch((err) => next(err));
     });
 
-blogsRouter.get('/images/:imageName', (req, res, next) => {
+panierRouter.get('/images/:imageName', (req, res, next) => {
     const imageName = req.params.imageName;
     const imagePath = path.join(__dirname, 'public/imagesBlogs', imageName);
 
@@ -67,22 +84,23 @@ blogsRouter.get('/images/:imageName', (req, res, next) => {
 })
 
 
-blogsRouter.route('/')
+panierRouter.route('/')
     .post(upload.single('image'), async (req, res, next) => {
         try {
             console.log("zzzzzzzzzzzzzzzzzzzz");
-            const { titre, description, apercu  } = req.body;
+            const { nom, prix, quentite, total  } = req.body;
             // const imageUrl = `${req.protocol}://${req.get('host')}/blogs/${req.file.originalname}`;
-            const imageUrl = `https://ozdd.onrender.com/blogs/${req.file.originalname}`;
+            const imageUrl = `https://ozdd.onrender.com/paniers/${req.file.originalname}`;
             console.log("aaaaaaaaaaaaaaaa", imageUrl);
             // const imageUrl = `${req.protocol}://${req.get('host')}/blogs/${req.file.originalname}`;
             // console.log("aaaaaaaaaaaaaaaa", imageUrl);
 
-            const blog = await Blogs.create({
-                titre: titre,
-                description: description,
+            const blog = await Paniers.create({
                 image: imageUrl,
-                apercu: apercu
+                nom: nom,
+                prix: prix,
+                quentite: quentite,
+                total: total
             });
 
             console.log("Produit Créé :", blog);
@@ -96,15 +114,15 @@ blogsRouter.route('/')
     });
 
 
-blogsRouter.route('/')
+panierRouter.route('/')
     .put((req, res, next) => {
         res.statusCode = 403;
         res.end('Opération PUT non prise en charge sur /blogs/');
     })
 
-blogsRouter.route('/')
+panierRouter.route('/')
     .delete((req, res, next) => {
-        Blogs.deleteMany({})
+        Paniers.deleteMany({})
         .then((resp) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
@@ -114,9 +132,9 @@ blogsRouter.route('/')
     });
 
 
-blogsRouter.route('/blog/:blogId')
+panierRouter.route('/panier/:blogId')
 .get((req, res, next) => {
-    Blogs.findById(req.params.blogId)
+    Paniers.findById(req.params.blogId)
     .then((blog) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
@@ -125,12 +143,12 @@ blogsRouter.route('/blog/:blogId')
     .catch((err) => next(err));
 })
 .put((req, res, next) => {
-    Blogs.findById(req.params.blogId)
+    Paniers.findById(req.params.blogId)
     .then((blog) => {
         if (blog != null) {
-            Blogs.findByIdAndUpdate(req.params.blogId, { $set: req.body }, { new: true })
+            Paniers.findByIdAndUpdate(req.params.blogId, { $set: req.body }, { new: true })
             .then((blog) => {
-                Blogs.findById(blog._id)
+                Paniers.findById(blog._id)
                 .then((blog) => {
                     res.statusCode = 200;
                     res.setHeader('Content-Type', 'application/json');
@@ -148,10 +166,10 @@ blogsRouter.route('/blog/:blogId')
     .catch((err) => next(err));
 })
 .delete((req, res, next) => {
-    Blogs.findById(req.params.blogId)
+    Paniers.findById(req.params.blogId)
     .then((blog) => {
         if (blog != null) {
-            Blogs.findByIdAndRemove(req.params.blogId)
+            Paniers.findByIdAndRemove(req.params.blogId)
             .then((resp) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
@@ -168,17 +186,8 @@ blogsRouter.route('/blog/:blogId')
     .catch((err) => next(err));
 });
 
-blogsRouter.route('/categories/:categorieblogId')
-.get((req, res, next) => {
-    Blogs.find({ categorie: req.params.categorieblogId })
-    .then((blogs) => {
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'application/json');
-        res.json(blogs);
-    })
-    .catch((err) => next(err));
-});
 
-blogsRouter.use(express.static('public/imagesBlogs'));
 
-module.exports = blogsRouter;
+panierRouter.use(express.static('public/imagesPaniers'));
+
+module.exports = panierRouter;
