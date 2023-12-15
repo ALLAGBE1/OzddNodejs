@@ -9,6 +9,8 @@ const fs = require('fs');
 const blogsRouter = express.Router();
 blogsRouter.use(bodyParser.json());
 
+var nameimage = "";
+
 // :::::::::::::::::::::::
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -17,7 +19,8 @@ const storage = multer.diskStorage({
     filename: (req, file, cb) => {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
       //   cb(null, file.originalname + '-' + uniqueSuffix); // Ajoute un timestamp au nom du fichier
-        cb(null, uniqueSuffix + '-' +  file.originalname); // Ajoute un timestamp au nom du fichier
+        nameimage = uniqueSuffix + '-' +  file.originalname;
+        cb(null, nameimage); // Ajoute un timestamp au nom du fichier
     }
     // filename: (req, file, cb) => {
     //   cb(null, file.originalname); // Définit le nom du fichier
@@ -73,7 +76,8 @@ blogsRouter.route('/')
             console.log("zzzzzzzzzzzzzzzzzzzz");
             const { titre, description, apercu  } = req.body;
             // const imageUrl = `${req.protocol}://${req.get('host')}/blogs/${req.file.originalname}`;
-            const imageUrl = `https://ozdd.onrender.com/blogs/${req.file.originalname}`;
+            const imageUrl = `https://ozdd.onrender.com/blogs/${nameimage}`;
+            // const imageUrl = `https://ozdd.onrender.com/blogs/${req.file.originalname}`;
             console.log("aaaaaaaaaaaaaaaa", imageUrl);
             // const imageUrl = `${req.protocol}://${req.get('host')}/blogs/${req.file.originalname}`;
             // console.log("aaaaaaaaaaaaaaaa", imageUrl);

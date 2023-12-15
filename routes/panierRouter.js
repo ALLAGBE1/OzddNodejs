@@ -10,6 +10,8 @@ const panierRouter = express.Router();
 panierRouter.use(bodyParser.json());
 
 // :::::::::::::::::::::::
+var nameimage = "";
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
       cb(null, 'public/imagesPaniers'); // Définit le répertoire de stockage
@@ -17,10 +19,13 @@ const storage = multer.diskStorage({
     filename: (req, file, cb) => {
       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
     //   cb(null, file.originalname + '-' + uniqueSuffix); // Ajoute un timestamp au nom du fichier
-        cb(null, uniqueSuffix + '-' +  file.originalname); // Ajoute un timestamp au nom du fichier
+        nameimage = uniqueSuffix + '-' +  file.originalname;
+        cb(null, nameimage); // Ajoute un timestamp au nom du fichier
+        // cb(null, uniqueSuffix + '-' +  file.originalname); // Ajoute un timestamp au nom du fichier
 
     }
   });
+
   
   const imageFileFilter = (req, file, cb) => {
     if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
@@ -90,7 +95,9 @@ panierRouter.route('/')
             console.log("zzzzzzzzzzzzzzzzzzzz");
             const { nom, prix, quentite, total  } = req.body;
             // const imageUrl = `${req.protocol}://${req.get('host')}/blogs/${req.file.originalname}`;
-            const imageUrl = `https://ozdd.onrender.com/paniers/${req.file.originalname}`;
+            // const imageUrl = `https://ozdd.onrender.com/paniers/${req.nameimage}`;
+            // const imageUrl = `https://ozdd.onrender.com/paniers/${req.file.originalname}`;
+            const imageUrl = `https://ozdd.onrender.com/paniers/${nameimage}`;
             console.log("aaaaaaaaaaaaaaaa", imageUrl);
             // const imageUrl = `${req.protocol}://${req.get('host')}/blogs/${req.file.originalname}`;
             // console.log("aaaaaaaaaaaaaaaa", imageUrl);

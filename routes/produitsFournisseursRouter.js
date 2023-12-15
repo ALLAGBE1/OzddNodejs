@@ -8,7 +8,7 @@ const fs = require('fs');
 
 const produitFournisseurRouter = express.Router();
 produitFournisseurRouter.use(bodyParser.json());
-
+let = nameimage;
 // :::::::::::::::::::::::
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -17,7 +17,8 @@ const storage = multer.diskStorage({
     filename: (req, file, cb) => {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
       //   cb(null, file.originalname + '-' + uniqueSuffix); // Ajoute un timestamp au nom du fichier
-        cb(null, uniqueSuffix + '-' +  file.originalname); // Ajoute un timestamp au nom du fichier
+        nameimage = uniqueSuffix + '-' +  file.originalname;
+        cb(null, nameimage); // Ajoute un timestamp au nom du fichier
 
     }
     // filename: (req, file, cb) => {
@@ -74,7 +75,8 @@ produitFournisseurRouter.route('/')
             console.log("zzzzzzzzzzzzzzzzzzzz");
             const { titre, description, prix, apercu, nomEntreprise } = req.body;
             // const imageUrl = `${req.protocol}://${req.get('host')}/produitsFournisseurs/${req.file.originalname}`;
-            const imageUrl = `https://ozdd.onrender.com/produitsFournisseurs/${req.file.originalname}`;
+            const imageUrl = `https://ozdd.onrender.com/produitsFournisseurs/${nameimage}`;
+            // const imageUrl = `https://ozdd.onrender.com/produitsFournisseurs/${req.file.originalname}`;
             console.log("aaaaaaaaaaaaaaaa", imageUrl);
 
             const produit = await ProduitsFournisseurs.create({

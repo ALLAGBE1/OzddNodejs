@@ -9,6 +9,8 @@ const fs = require('fs');
 const produitAdminRouter = express.Router();
 produitAdminRouter.use(bodyParser.json());
 
+var nameimage = "";
+
 // :::::::::::::::::::::::
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -17,7 +19,8 @@ const storage = multer.diskStorage({
     filename: (req, file, cb) => {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
       //   cb(null, file.originalname + '-' + uniqueSuffix); // Ajoute un timestamp au nom du fichier
-        cb(null, uniqueSuffix + '-' +  file.originalname); // Ajoute un timestamp au nom du fichier
+        nameimage = uniqueSuffix + '-' +  file.originalname;
+        cb(null, nameimage); // Ajoute un timestamp au nom du fichier
   
     }
     // filename: (req, file, cb) => {
@@ -74,7 +77,8 @@ produitAdminRouter.route('/')
             console.log("zzzzzzzzzzzzzzzzzzzz");
             const { titre, description, prix, apercu, categorie } = req.body;
             // const imageUrl = `${req.protocol}://${req.get('host')}/produitsAdmin/${req.file.originalname}`;
-            const imageUrl = `https://ozdd.onrender.com/produitsAdmin/${req.file.originalname}`;
+            const imageUrl = `https://ozdd.onrender.com/produitsAdmin/${nameimage}`;
+            // const imageUrl = `https://ozdd.onrender.com/produitsAdmin/${req.file.originalname}`;
             console.log("bbbbbbbbbbbbbbbbbbbbb");
             // console.log("aaaaaaaaaaaaaaaa", imageUrl);
 
