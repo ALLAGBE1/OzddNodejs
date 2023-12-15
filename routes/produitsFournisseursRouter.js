@@ -8,7 +8,8 @@ const fs = require('fs');
 
 const produitFournisseurRouter = express.Router();
 produitFournisseurRouter.use(bodyParser.json());
-let = nameimage;
+
+let nameimage = "";
 // :::::::::::::::::::::::
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
