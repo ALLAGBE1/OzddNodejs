@@ -8,7 +8,6 @@ const fs = require('fs');
 var formation = express.Router();
 formation.use(bodyParser.json());
 
-var nameimage = "";
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -21,14 +20,8 @@ const storage = multer.diskStorage({
       }
     },
     filename: (req, file, cb) => {
-      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    //   cb(null, file.originalname + '-' + uniqueSuffix); // Ajoute un timestamp au nom du fichier
-        nameimage = uniqueSuffix + '-' +  file.originalname;
-        cb(null, nameimage); // Ajoute un timestamp au nom du fichier
+      cb(null, file.originalname); // Définir le nom du fichier téléchargé
     }
-    // filename: (req, file, cb) => {
-    //   cb(null, Date.now() + '-' + file.originalname); // Définir le nom du fichier téléchargé
-    // }
   });
   
   
