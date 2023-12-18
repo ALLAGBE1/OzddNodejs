@@ -14,14 +14,22 @@ var fournisseurSchema = new Schema({
       type: Boolean,
       default: false
     },
+    // logoEntreprise: {  
+    //     type: String,
+    //     required: true
+    // },
     logoEntreprise: {  
-        type: String,
-        required: true
+      type: Buffer, // Changement du type à Buffer
+      default: Buffer.from('') // Vous pouvez définir une valeur par défaut appropriée
     },
-    pieceIdentite: {
-      type: String,
-      required: true
+    pieceIdentite: {  
+      type: Buffer, // Changement du type à Buffer
+      default: Buffer.from('') // Vous pouvez définir une valeur par défaut appropriée
     },
+    // pieceIdentite: {
+    //   type: String,
+    //   required: true
+    // },
     pays: {
         type: String,
         default: ''
