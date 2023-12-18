@@ -231,7 +231,7 @@ fournisseur.route('/:fournisseurId')
                 pays: fournisseur.pays,
                 // Inclure le type et les données binaires du logo de l'entreprise dans la réponse JSON
                 logoEntreprise: {
-                    type: blog.imageType, // Remplacez par le type approprié
+                    type: fournisseur.imageType, // Remplacez par le type approprié
                     data: fournisseur.logoEntreprise.toString('base64'),
                 },
                 // Inclure le type et les données binaires de la pièce d'identité dans la réponse JSON
