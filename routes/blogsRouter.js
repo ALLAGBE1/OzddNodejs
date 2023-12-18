@@ -191,14 +191,37 @@ blogsRouter.route('/')
 
 
 blogsRouter.route('/blog/:blogId')
+// .get((req, res, next) => {
+//     Blogs.findById(req.params.blogId)
+//     .then((blog) => {
+//         res.statusCode = 200;
+//         res.setHeader('Content-Type', 'application/json');
+//         res.json(blog);
+//     })
+//     .catch((err) => next(err));
+// })
 .get((req, res, next) => {
     Blogs.findById(req.params.blogId)
-    .then((blog) => {
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'application/json');
-        res.json(blog);
-    })
-    .catch((err) => next(err));
+        .then((blog) => {
+            if (!blog) {
+                res.status(404).json({ message: "Blog not found" });
+                return;
+            }
+
+            const responseData = {
+                // _id: blog._id,
+                titre: blog.titre,
+                description: blog.description,
+                // Inclure le type et les données binaires de l'image dans la réponse JSON
+                image: {
+                    type: blog.imageType, // Assurez-vous de définir blog.imageType correctement
+                    data: blog.image.toString('base64'),
+                },
+            };
+
+            res.status(200).json(responseData);
+        })
+        .catch((err) => next(err));
 })
 .put((req, res, next) => {
     Blogs.findById(req.params.blogId)
