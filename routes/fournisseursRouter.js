@@ -58,7 +58,7 @@ fournisseur.route('/')
                     fournisseur.logoEntrepriseData = {
                         data: fournisseur.logoEntreprise.toString('base64'),
                         // type: 'image/jpeg' // Remplacez par le type approprié
-                        type: blog.imageType
+                        type: fournisseur.imageType
                     };
 
                     fournisseur.pieceIdentiteData = {
@@ -197,7 +197,7 @@ fournisseur.route('/valides')
                     // Inclure les données binaires du logo de l'entreprise et de la pièce d'identité dans la réponse JSON
                     fournisseur.logoEntrepriseData = {
                         data: fournisseur.logoEntreprise.toString('base64'),
-                        type: blog.imageType // Remplacez par le type approprié
+                        type: fournisseur.imageType // Remplacez par le type approprié
                     };
 
                     fournisseur.pieceIdentiteData = {
