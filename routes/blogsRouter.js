@@ -10,7 +10,7 @@ const blogsRouter = express.Router();
 blogsRouter.use(bodyParser.json());
 
 // Configure multer for file upload
-const multer = require('multer');
+// const multer = require('multer');
 const storage = multer.memoryStorage(); // Store images as buffers in memory
 const upload = multer({ storage: storage });
 
